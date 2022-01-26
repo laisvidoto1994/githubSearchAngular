@@ -1,0 +1,53 @@
+<h1>Github - Pesquisa de usuário</h1>
+
+<input
+  type="text"
+  (keyup)="onKeyUp($event)"
+  (keyup.enter)="salvarValor(campoInput.value)"
+  (blur)="salvarValor(campoInput.value)"
+  (input)="valorInicial = $event.target.value"
+  #campoInput/>
+
+<i >
+  {{menssagemInput}}
+</i>
+
+<p>valor atual: {{valorAtual}}</p>
+<p>valor salvo com enter: {{valorSalvo}}</p>
+
+<button  type="button" class="btn" (click)="cliqueRepos()" >
+  Repos
+</button>
+
+<button  type="button" class="btn" (click)="cliqueStarred()" >
+  Starred
+</button>
+
+<button  type="button" class="btn" (click)="cliqueLimpar()" >
+  Limpar
+</button>
+
+
+<!-- lista de dados do usuario da pesquisado -->
+<ul >
+  <li *ngFor="let dado of listaDadosDoUsuario, let i = index">
+    {{dado[0] }} : {{dado[1]}}
+    <img src="{{dado.avatar_url}}" >
+  </li>
+</ul>
+
+<!-- Repositorio -->
+<h3>Repositórios do usuário</h3>
+<ul *ngFor="let dado of repositorios, let i = index">
+  <li > {{i}} Id: {{dado.id}} </li>
+  <li > {{i}} Nome: {{dado.name}} </li>
+</ul>
+
+<!-- starred -->
+<h3>Repositorios mais visitados pelo usuario</h3>
+<ul *ngFor="let dado of starred, let i = index">
+  <li > Id: {{dado.id}} </li>
+  <li > Nome: {{dado.name}} </li>
+  <li > login: {{dado.login}} </li>
+  <img src="{{dado.avatar_url}}" >
+</ul>
